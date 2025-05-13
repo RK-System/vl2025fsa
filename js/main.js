@@ -711,7 +711,7 @@ function finalizarVenda() {
   const codigoPedido = gerarCodigoAleatorio(10);
 
   const totalGeralTexto = totalCarrinhoElement.innerText;
-  let mensagemWhatsapp = `Pedido: ${codigoPedido}\n ${dataHoraPedido}\n\nNome: ${nomeCliente}\nEndereço: ${enderecoCliente}\n\nItens:\n${itensCarrinhoTexto}\n\nTotal Geral: R$ ${totalGeralTexto}\n\nForma de Pagamento: `;
+  let mensagemWhatsapp = `*Pedido:* ${codigoPedido}\n${dataHoraPedido}\n\n*Nome:* ${nomeCliente}\n*Endereço:* ${enderecoCliente}\n\n*Itens:*\n${itensCarrinhoTexto}\n\n*Total Geral: R$* ${totalGeralTexto}\n\n*Forma de Pagamento:* `;
 
   if (formaPagamento) {
       mensagemWhatsapp += formaPagamento.value;
