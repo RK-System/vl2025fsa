@@ -710,34 +710,33 @@ function finalizarVenda() {
 
   const codigoPedido = gerarCodigoAleatorio(10);
 
-  const totalGeralTexto = totalCarrinhoElement.innerText;
-  let mensagemWhatsapp = `*Pedido:* ${codigoPedido}\n${dataHoraPedido}\n\n*Nome:* ${nomeCliente}\n*Endereço:* ${enderecoCliente}\n\n*Itens:*\n${itensCarrinhoTexto}\n\n*Total Geral: R$* ${totalGeralTexto}\n\n*Forma de Pagamento:* `;
+  const totalGeralTexto = totalCarrinhoElement.innerText;
+  let mensagemWhatsapp = `*Pedido:* ${codigoPedido}\n${dataHoraPedido}\n\n*Nome:* ${nomeCliente}\n*Endereço:* ${enderecoCliente}\n\n*Itens:*\n${itensCarrinhoTexto}\n\n*Total Geral: R$* ${totalGeralTexto}\n\n*Forma de Pagamento:* `;
 
-  if (formaPagamento) {
-      mensagemWhatsapp += formaPagamento.value;
-      if (formaPagamento.value === 'dinheiro') {
-          if (valorDinheiroInput.value) {
-              const valorDadoFormatado = parseFloat(valorDinheiroInput.value.replace(',', '.')).toFixed(2).replace('.', ',');
-              mensagemWhatsapp += ` - Valor dado: R$ ${valorDadoFormatado}`;
-              if (valorTrocoSpan && valorTrocoSpan.innerText !== '0,00') {
-                  mensagemWhatsapp += ` - Troco: R$ ${valorTrocoSpan.innerText}`;
-              }
-          }
-      } else if (formaPagamento.value === 'pix') {
-          const chavePixElement = document.getElementById('chavePix');
-          mensagemWhatsapp += ` - Chave PIX: ${chavePixElement.innerText}`;
-      }
-  } else {
-      mensagemWhatsapp += 'Não selecionada';
-  }
-  
-  const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
-  const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
+  if (formaPagamento) {
+      mensagemWhatsapp += formaPagamento.value;
+      if (formaPagamento.value === 'dinheiro') {
+          if (valorDinheiroInput.value) {
+              const valorDadoFormatado = parseFloat(valorDinheiroInput.value.replace(',', '.')).toFixed(2).replace('.', ',');
+              mensagemWhatsapp += ` - Valor dado: R$ ${valorDadoFormatado}`;
+              if (valorTrocoSpan && valorTrocoSpan.innerText !== '0,00') {
+                  mensagemWhatsapp += ` - Troco: R$ ${valorTrocoSpan.innerText}`;
+              }
+          }
+      } else if (formaPagamento.value === 'pix') {
+          const chavePixElement = document.getElementById('chavePix');
+          mensagemWhatsapp += ` - Chave PIX: ${chavePixElement.innerText}`;
+      }
+  } else {
+      mensagemWhatsapp += 'Não selecionada';
+  }
 
-  window.open(linkWhatsapp, '_blank');
-  $('#carrinhoModal').modal('hide');
+  const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
+  const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
+
+  window.open(linkWhatsapp, '_blank');
+  $('#carrinhoModal').modal('hide');
 }
-//ver depois 
 
 // Chave PIX estática (você pode gerar dinamicamente ou buscar do seu backend)
 document.addEventListener('DOMContentLoaded', () => {
