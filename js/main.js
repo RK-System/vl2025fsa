@@ -730,12 +730,16 @@ function finalizarVenda() {
   } else {
       mensagemWhatsapp += 'Não selecionada';
   }
-
   const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
+  const linkTeste = `https://wa.me/<span class="math-inline">\{numeroWhatsapp\}?text\=</span>{encodeURIComponent(mensagemTesteNegrito)}`;
+  window.open(linkTeste, '_blank');
+}
+ /* const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
     const mensagemTesteNegrito = "*Teste de negrito via código*";
     const linkTeste = `https://wa.me/<span class="math-inline">\{numeroWhatsapp\}?text\=</span>{encodeURIComponent(mensagemTesteNegrito)}`;
     window.open(linkTeste, '_blank');
-}
+}*/ 
+//ver depois 
 
 // Chave PIX estática (você pode gerar dinamicamente ou buscar do seu backend)
 document.addEventListener('DOMContentLoaded', () => {
