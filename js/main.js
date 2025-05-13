@@ -731,7 +731,7 @@ function finalizarVenda() {
       mensagemWhatsapp += 'Não selecionada';
   }
   
- const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
+ const numeroWhatsapp = '5575998886000'; // Substitua pelo seu número
     const mensagemTesteNegrito = "*Teste de negrito via código*";
     const linkTeste = `https://wa.me/<span class="math-inline">\{numeroWhatsapp\}?text\=</span>{encodeURIComponent(mensagemTesteNegrito)}`;
     window.open(linkTeste, '_blank');
