@@ -1,0 +1,541 @@
+body {
+    padding-top: 3.5rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Responsividade para a navbar */
+.navbar {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    margin-right: 0;
+}
+
+main {
+    padding-top: 140px;
+}
+
+.btn-primary:hover {
+    background-color: purple;
+    border-color: purple;
+}
+
+.card-footer.no-background {
+    background-color: transparent;
+}
+
+.card-footer {
+    border-top: none;
+}
+
+/* Responsividade nos cards dos produtos */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 0rem;
+    text-align: center;
+}
+
+.btnPriv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #1a1a1a;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: background-color 0.3s, transform 0.3s;
+    scroll-behavior: smooth;
+    opacity: 0; /* Inicialmente invisível */
+    visibility: hidden; /* Garante que não ocupe espaço */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Transição suave para aparecer/desaparecer */
+}
+
+.btnPriv.show {
+    opacity: 1; /* Torna visível quando a classe "show" é adicionada */
+    visibility: visible;
+}
+
+.btnPriv:hover {
+    background-color: #333;
+    transform: scale(1.1);
+}
+
+.btnPriv::after {
+    content: "↑";
+    font-size: 30px;
+    font-weight: bold;
+    color: aqua;
+    transition: margin-top 250ms;
+}
+
+.btnPriv:hover::after {
+    margin-top: -8px;
+}
+
+/* Cards em dispositivos pequenos */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+
+    /* Ajuste da grid de produtos */
+    .col-12 {
+        flex: 1 0 100%;
+    }
+
+    .col-sm-6 {
+        flex: 1 0 50%;
+    }
+
+    .col-md-4 {
+        flex: 1 0 33.33%;
+    }
+
+    .col-lg-3 {
+        flex: 1 0 25%;
+    }
+}
+
+@media (max-width: 576px) {
+    .toast {
+        max-width: 90vw;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Estiliza o contador do carrinho para telas maiores (desktop) */
+@media (min-width: 992px) {
+    #carrinho-contador-desktop { /* Contador do carrinho desktop */
+        top: 32px !important; /* Desce o contador no desktop */
+        right: -20px !important; /* Move para a direita no desktop */
+    }
+
+    #carrinho-button-desktop { /* Carrinho visível no desktop */
+        font-size: 1rem !important; /* Ajusta o tamanho da fonte/ícone */
+        padding: 8px 12px !important; /* Ajusta o espaçamento interno */
+        height: auto;
+        line-height: 1;
+    }
+}
+
+
+/* Estilos para telas entre 541px e 991px - Tentativa de alinhamento preciso do contador */
+@media (min-width: 541px) and (max-width: 991px) {
+    #carrinho-button-desktop { /* Carrinho visível no mobile */
+      font-size: 1rem !important;
+      padding: 0.3rem 0.5rem !important;
+     
+  }
+  
+  #carrinho-contador-desktop { /* Contador do carrinho mobile */
+      position: absolute;
+      top: 30px;
+      right: -15px;
+      font-size: 0.7rem !important;
+      padding: 0.2em 0.4em;
+  }
+
+  .d-md-none.ms-3[data-bs-target="#modalCategorias"] { /* Garante que o botão só aparece abaixo de md */
+    width: 40% !important; /* Define a largura para 35% */
+    margin-left: 300px !important; /* Empurra o botão para a direita */
+   
+    margin-top: 10px; /* Adiciona margem no topo para separar */
+    text-align: center; /* Opcional: centraliza o texto dentro do botão */
+    display: block !important; /* Garante que seja um elemento de bloco */
+}
+}
+
+/* Estilos para telas entre 300px e 540px */
+@media (min-width: 300px) and (max-width: 540px) { 
+      /* botão categorias*/
+    .d-md-none.ms-3[data-bs-target="#modalCategorias"] { /* Garante que o botão só aparece abaixo de md */
+        width: 80% !important; /* Define a largura para 35% */
+        margin-left: 35px !important; /* Empurra o botão para a direita */
+        margin-top: 10px; /* Adiciona margem no topo para separar */
+        text-align: center; /* Opcional: centraliza o texto dentro do botão */
+        display: block !important; /* Garante que seja um elemento de bloco */
+    }
+    
+    #carrinho-button-desktop { /* Carrinho visível no mobile */
+      font-size: 1rem !important;
+      padding: 0.3rem 0.5rem !important;
+     
+  }
+  
+  #carrinho-contador-desktop { /* Contador do carrinho mobile */
+      position: absolute;
+      top: 30px;
+      right: -15px;
+      font-size: 0.7rem !important;
+      padding: 0.2em 0.4em;
+  }
+}
+
+/* Estilos para o modal de categorias */
+#modalCategorias .modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem 1.5rem;
+}
+
+#modalCategorias .modal-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+#modalCategorias .modal-body {
+    padding: 1rem 1.5rem;
+}
+
+#modalCategorias .list-group {
+    display: grid; /* Layout em grid para telas médias e grandes */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Aumentei a largura mínima para 180px */
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#modalCategorias .list-group-item {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    text-align: center;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalCategorias .list-group-item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0.75rem;
+    border-radius: inherit;
+    text-align: center;
+}
+
+#modalCategorias .list-group-item a:hover {
+    background-color: #f8f9fa;
+}
+
+#modalCategorias .modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 1rem 1.5rem;
+    justify-content: flex-end;
+}
+
+/* Estilo para o carrinho no modal */
+#carrinhoModalBody img.img-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#carrinhoModalBody .btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 30px; /* Aumente o line-height para a altura do botão */
+    text-align: center;
+}
+
+#carrinhoModalBody .flex-grow-1 {
+    margin-left: 10px;
+}
+
+#carrinhoModalBody .text-end h5 {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Botão de limpar carrinho */
+#carrinhoModalBody .btn-danger {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Estilos para a coluna de botões */
+#carrinhoModalBody .d-flex.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Já tínhamos, mantém para centralizar horizontalmente */
+    justify-content: center; /* Tenta centralizar verticalmente o grupo de ícones */
+}
+
+#carrinhoModalBody .d-flex.flex-column i {
+    display: flex; /* Alterado para flex */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3px;
+    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+    line-height: normal; /* Alterado para normal */
+}
+
+.btn-remover-item {
+    display: flex; /* Já estava como flex */
+    align-items: center;
+    justify-content: center;
+    width: 30px !important; /* Mantendo o !important por precaução */
+    height: 30px !important; /* Mantendo o !important por precaução */
+    font-size: 1.5rem;
+    line-height: normal; /* Já estava como normal */
+}
+
+/* Estilos para os botões dentro da coluna */
+#carrinhoModalBody .d-flex.flex-column button {
+    align-items: center; /* Centraliza o conteúdo dos botões horizontalmente */
+    margin-bottom: 3px;
+}
+
+.btn-sm.btn-success {
+    margin-bottom: 3px;
+}
+
+.btn-sm.btn-warning {
+    margin-bottom: 3px;
+}
+
+.btn-remover-item {
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: normal;
+}
+
+/* Para telas menores (ex: até 576px - smartphones) */
+@media (max-width: 576px) {
+    #carrinhoModalBody .d-flex.flex-column {
+        align-items: center; /* Centraliza horizontalmente (já estava, mas para garantir) */
+        justify-content: center; /* Tenta centralizar verticalmente os botões como um grupo */
+    }
+}
+
+/* Para telas médias (ex: de 577px até 992px - tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+    #carrinhoModalBody .d-flex.flex-column {
+        align-items: center;
+        justify-content: flex-start; /* Tenta alinhar os botões ao topo da coluna */
+    }
+}
+
+/* Para telas maiores (ex: acima de 992px - desktops) */
+@media (min-width: 993px) {
+    #carrinhoModalBody .d-flex.flex-column {
+        align-items: center;
+        justify-content: center; /* Ou talvez flex-start, dependendo do layout desejado */
+    }
+}
+
+.toast {
+    border-radius: 15px; /* Borda arredondada */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: all 0.3s ease-in-out; /* Transição suave */
+}
+
+.toast.show {
+    animation: fadeInUp 0.5s ease-out; /* Animação ao aparecer */
+}
+
+.toast-body {
+    padding: 15px 20px; /* Espaçamento confortável dentro do toast */
+    font-size: 1.1rem; /* Tamanho de fonte ajustado */
+}
+
+.toast-header {
+    border-bottom: 1px solid #ddd; /* Linha de separação no topo */
+    background-color: #f8f9fa; /* Cor de fundo suave */
+    padding: 10px;
+    border-radius: 15px 15px 0 0; /* Arredondamento no topo */
+}
+
+.toast .btn-close {
+    filter: brightness(0.5); /* Ícone de close com efeito de brilho */
+}
+
+.toast .btn-close:hover {
+    filter: brightness(1); /* Ícone de close com brilho normal ao passar o mouse */
+}
+
+/* Animação de fade in e slide-up */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*MUDAR TAMANHO DAS IMAGENS*/
+.card-img-top {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    max-width: 100%;
+}
+
+#search-button {
+    width: auto;
+    height: 35px !important;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0px 5px;
+}
+
+#search-input {
+    width: 205px;
+    height: 35px !important;
+    font-size: 12px;
+    
+
+}
+
+.copiar-pix-botao {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 5px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px;
+}
+
+.icone-copiar {
+    font-family: 'Material Icons';
+    font-size: 1.2em; /* Ajuste o tamanho conforme necessário */
+    vertical-align: middle;
+    color: #555; /* Cor do ícone */
+    transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.copiar-pix-botao:hover .icone-copiar,
+.copiar-pix-botao:focus .icone-copiar {
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+.copiar-pix-botao.copiado .icone-copiar {
+    color: #28a745;
+    transform: scale(1.2);
+}
+
+/* Ajustes de LGPD Banner */
+.lgpd-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 13px;
+    display: none;
+    z-index: 1000;
+}
+
+.lgpd-banner a {
+    color: #00ffff;
+    text-decoration: underline;
+    margin: 0 5px;
+}
+
+.lgpd-banner button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    margin: 10px 5px 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.lgpd-banner button:hover {
+    background-color: #45a049;
+}
+
+.lgpd-banner button.decline {
+    background-color: #f44336;
+}
+
+.lgpd-banner button.decline:hover {
+    background-color: #d32f2f;
+}
+
+/* Responsivo para LGPD Banner */
+@media (max-width: 480px) {
+    .lgpd-banner {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    .lgpd-banner button {
+        width: 100%;
+        margin-top: 8px;
+    }
+}
+
+footer {
+    text-align: center; /* Centraliza o texto */
+    font-size: 14px; /* Ajuste de tamanho de fonte, se necessário */
+    padding: 0px 0; /* Espacemento no topo e na base */
+    background-color: #000;
+    color: #fff;
+}
+
+footer a {
+    color: #4CAF50; /* ou outro destaque */
+}
+
+footer a:hover {
+    color: #66bb6a;
+}
+
+footer p {
+    margin: 0; /* Remove as margens do parágrafo */
+}
