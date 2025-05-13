@@ -731,10 +731,11 @@ function finalizarVenda() {
       mensagemWhatsapp += 'Não selecionada';
   }
   
- const numeroWhatsapp = '5575998886000'; // Substitua pelo seu número
-    const mensagemTesteNegrito = "*Teste de negrito via código*";
-    const linkTeste = `https://wa.me/<span class="math-inline">\{numeroWhatsapp\}?text\=</span>{encodeURIComponent(mensagemTesteNegrito)}`;
-    window.open(linkTeste, '_blank');
+  const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
+  const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
+
+  window.open(linkWhatsapp, '_blank');
+  $('#carrinhoModal').modal('hide');
 }
 //ver depois 
 
