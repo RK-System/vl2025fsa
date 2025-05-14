@@ -1,5 +1,6 @@
 body {
     padding-top: 3.5rem;
+    text-size-adjust: 100%;
 }
 
 .container {
@@ -20,7 +21,7 @@ body {
 }
 
 main {
-    padding-top: 140px;
+    padding-top: 100px;
 }
 
 .btn-primary:hover {
@@ -39,12 +40,16 @@ main {
 /* Responsividade nos cards dos produtos */
 .card {
     border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card-body {
     padding: 0rem;
     text-align: center;
+}
+
+.card:hover {
+    transform: scale(1.1);
 }
 
 .btnPriv {
@@ -155,7 +160,6 @@ main {
   .d-md-none.ms-3[data-bs-target="#modalCategorias"] { /* Garante que o botão só aparece abaixo de md */
     width: 40% !important; /* Define a largura para 35% */
     margin-left: 300px !important; /* Empurra o botão para a direita */
-   
     margin-top: 10px; /* Adiciona margem no topo para separar */
     text-align: center; /* Opcional: centraliza o texto dentro do botão */
     display: block !important; /* Garante que seja um elemento de bloco */
@@ -283,15 +287,9 @@ main {
 }
 
 /* Estilos para a coluna de botões */
-#carrinhoModalBody .d-flex.flex-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Já tínhamos, mantém para centralizar horizontalmente */
-    justify-content: center; /* Tenta centralizar verticalmente o grupo de ícones */
-}
-
 #carrinhoModalBody .d-flex.flex-column i {
     display: flex; /* Alterado para flex */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-bottom: 3px;
@@ -299,16 +297,6 @@ main {
     width: 30px;
     height: 30px;
     line-height: normal; /* Alterado para normal */
-}
-
-.btn-remover-item {
-    display: flex; /* Já estava como flex */
-    align-items: center;
-    justify-content: center;
-    width: 30px !important; /* Mantendo o !important por precaução */
-    height: 30px !important; /* Mantendo o !important por precaução */
-    font-size: 1.5rem;
-    line-height: normal; /* Já estava como normal */
 }
 
 /* Estilos para os botões dentro da coluna */
@@ -321,15 +309,17 @@ main {
     margin-bottom: 3px;
 }
 
-.btn-sm.btn-warning {
-    margin-bottom: 3px;
+.btn-remover-item {
+
+    font-size: 1.5rem;
+    line-height: normal; /* Já estava como normal */
 }
 
 .btn-remover-item {
     width: 30px !important;
     height: 30px !important;
     padding: 0;
-    font-size: 16px;
+    font-size: 1.5rem;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -434,15 +424,33 @@ main {
 
 }
 
-.btn-outline-secondary.btn-sm {
-    width: auto; /* Ajusta a largura automaticamente ao conteúdo */
-    min-width: 90px; /* Define uma largura mínima para garantir que "Copiar" caiba */
-    padding: 5px 7px; /* Ajusta o padding para um botão menor */
-    font-size: 0.8em; /* Mantém o tamanho da fonte adequado para um botão pequeno */
+.copiar-pix-botao {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 5px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px;
 }
 
-.btn-outline-secondary.btn-sm i.bi-clipboard {
-    margin-right: 2px; /* Adiciona um pequeno espaço entre o ícone e o texto */
+.icone-copiar {
+    font-family: 'Material Icons';
+    font-size: 1.2em; /* Ajuste o tamanho conforme necessário */
+    vertical-align: middle;
+    color: #555; /* Cor do ícone */
+    transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.copiar-pix-botao:hover .icone-copiar,
+.copiar-pix-botao:focus .icone-copiar {
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+.copiar-pix-botao.copiado .icone-copiar {
+    color: #28a745;
+    transform: scale(1.2);
 }
 
 /* Ajustes de LGPD Banner */
