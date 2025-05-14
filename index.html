@@ -88,7 +88,7 @@
                 <h5 class="modal-title">Carrinho de Compras</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" tabindex="-1"></button>
             </div>
-            <div class="modal-body modal-body-padded" id="carrinhoModalBody">
+            <div class="modal-body" id="carrinhoModalBody">
                 <div id="listaItensCarrinho"></div>
 
                 <hr class="my-2">
@@ -118,7 +118,7 @@
                 <div class="mb-3">
                     <label class="form-label">Forma de Pagamento:</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="pagamento" id="dinheiro" value="dinheiro" onchange="mostrarCampoTroco()">
+                        <input class="form-check-input" type="radio" name="pagamento" id="dinheiro" value="Dinheiro" onchange="mostrarCampoTroco()">
                         <label class="form-check-label" for="dinheiro">Dinheiro</label>
                        <div id="campoTroco" style="display: none;">
                             <div class="input-group mt-2">
@@ -133,19 +133,20 @@
                         <input class="form-check-input" type="radio" name="pagamento" id="pix" value="pix" onchange="mostrarDetalhesPix()">
                         <label class="form-check-label" for="pix">PIX</label>
                         <div id="detalhesPix" style="display: none;" class="mt-2">
-                            <p>Chave PIX: 75998886000
+                            <p>Chave PIX: <span id="chavePix">75998886000</span>
                                 <button class="copiar-pix-botao" aria-label="Copiar chave PIX">
-                                    <span class="material-icons icone-copiar">content_copy</span>                                   
+                                    <span class="material-icons icone-copiar">content_copy</span>
                                 </button>
-                            </p></div>
+                            </p>
+                        </div>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="pagamento" id="cartao" value="cartao" onchange="esconderDetalhesPagamento()">
-                        <label class="form-check-label" for="cartao">Cartão</label>
+                        <label class="form-check-label" for="cartao">Cartão: Débito/Crédito</label>
                     </div>
                 </div>
                 <hr class="mb-3">
-                </div>
+            </div>
             <div class="modal-footer d-grid gap-2">
                 <div class="d-flex justify-content-center gap-2">
                     <button type="button" class="btn btn-secondary flex-grow-1" data-bs-dismiss="modal">Fechar</button>
