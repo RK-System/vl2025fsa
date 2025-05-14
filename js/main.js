@@ -649,7 +649,7 @@ function finalizarVenda() {
   const formaPagamento = document.querySelector('input[name="pagamento"]:checked');
   const valorDinheiroInput = document.getElementById('valorDinheiro');
   const listaItensCarrinhoElem = document.getElementById('listaItensCarrinho');
-  const itensCarrinhoDivs = listaItensCarrinhoElem.querySelectorAll('.d-flex.align-items-center.border-bottom.mb-3.pb-2.');
+  const itensCarrinhoDivs = listaItensCarrinhoElem.querySelectorAll('.d-flex.align-items-center.border-bottom.mb-3.pb-2');
   const totalCarrinhoElement = document.getElementById('totalCarrinho');
   const valorTrocoSpan = document.getElementById('valorTroco');
 
