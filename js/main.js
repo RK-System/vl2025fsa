@@ -237,20 +237,16 @@ function addItemToCart(product) {
       if (existing) {
           existing.quantidade += 1;
           const mensagemAviso = `${product.nome}: Produto já está no carrinho! Quantidade atualizada.`;
-          console.log(Date.now(), 'Chamando showToast aviso:', mensagemAviso);
           showToast('aviso', mensagemAviso);
       } else {
           cartItems.push({ ...product, quantidade: 1 });
           const mensagemSucesso = `${product.nome}: Produto adicionado ao carrinho!`;
-          console.log(Date.now(), 'Chamando showToast sucesso:', mensagemSucesso);
           showToast('sucesso', mensagemSucesso);
       }
       updateCartModal();
       updateCartCount();
   } catch (error) {
-      console.error("Erro ao adicionar produto:", error);
       const mensagemErro = `${product.nome}: Erro ao adicionar o produto!`;
-      console.log(Date.now(), 'Chamando showToast erro:', mensagemErro);
       showToast('erro', mensagemErro);
   }
 }
@@ -278,7 +274,6 @@ function showToast(tipo, mensagem) {
           textColorClass = ''; // Já é branco por padrão em bg-info
           break;
       default:
-          console.error('Tipo de toast inválido:', tipo);
           return;
   }
 
@@ -422,8 +417,6 @@ function updateCartModal() {
         div.appendChild(controls);
 
         container.appendChild(div);
-
-        console.log('Processando item:', item.nome);
     }
 
  // Exibir total geral
@@ -431,9 +424,7 @@ function updateCartModal() {
     if (cartItems.length > 0) {
         if (totalCarrinhoElement) {
             totalCarrinhoElement.innerText = ` ${totalGeral.toFixed(2).replace(".", ",")}`;
-        } else {
-            console.error("Elemento totalCarrinho não encontrado no HTML!");
-        }
+        } 
         calcularTrocoAutomatico(); // Chama calcularTrocoAutomatico após atualizar o modal
     } else {
         if (totalCarrinhoElement) {
@@ -606,19 +597,16 @@ function esconderDetalhesPagamento() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const detalhesPixDiv = document.getElementById('detalhesPix');
-
+const detalhesPixDiv = document.getElementById('detalhesPix');
     if (detalhesPixDiv) {
         const copiarPixBotao = detalhesPixDiv.querySelector('.copiar-pix-botao');
-        const chavePixElement = detalhesPixDiv.querySelector('p'); // O parágrafo que contém a chave PIX
+        const chavePixElement = detalhesPixDiv.querySelector('p'); // Mantém esta linha
 
         if (copiarPixBotao && chavePixElement) {
             copiarPixBotao.addEventListener('click', function() {
-                const chavePix = chavePixElement.textContent.split(':')[1].trim(); // Extrai a chave após "Chave PIX:"
-
+                const chavePix = chavePixElement.querySelector('span').textContent.trim();
                 navigator.clipboard.writeText(chavePix)
                     .then(() => {
-                        // Adicionar feedback visual (classe 'copiado')
                         copiarPixBotao.classList.add('copiado');
                         setTimeout(() => {
                             copiarPixBotao.classList.remove('copiado');
@@ -661,7 +649,7 @@ function finalizarVenda() {
   const formaPagamento = document.querySelector('input[name="pagamento"]:checked');
   const valorDinheiroInput = document.getElementById('valorDinheiro');
   const listaItensCarrinhoElem = document.getElementById('listaItensCarrinho');
-  const itensCarrinhoDivs = listaItensCarrinhoElem.querySelectorAll('.d-flex.align-items-center.border-bottom.mb-3.pb-2');
+  const itensCarrinhoDivs = listaItensCarrinhoElem.querySelectorAll('.d-flex.align-items-center.border-bottom.mb-3.pb-2.');
   const totalCarrinhoElement = document.getElementById('totalCarrinho');
   const valorTrocoSpan = document.getElementById('valorTroco');
 
@@ -688,7 +676,7 @@ function finalizarVenda() {
   }
 
   // Nova validação para pagamento em dinheiro
-  if (formaPagamento.value === 'dinheiro' && !valorDinheiroInput.value.trim()) {
+  if (formaPagamento.value === 'Dinheiro' && !valorDinheiroInput.value.trim()) {
       showToast('aviso', 'Por favor, informe o valor em dinheiro.');
       valorDinheiroInput.focus();
       return;
@@ -708,14 +696,14 @@ function finalizarVenda() {
       return `° ${nome} - ${quantidadeFormatada} x R$ ${precoUnitario.toFixed(2).replace('.', ',')} = R$ ${totalItem.toFixed(2).replace('.', ',')}`;
   }).join('\n');
 
-  const codigoPedido = gerarCodigoAleatorio(10);
+const codigoPedido = gerarCodigoAleatorio(10);
 
   const totalGeralTexto = totalCarrinhoElement.innerText;
   let mensagemWhatsapp = `*Pedido:* ${codigoPedido}\n${dataHoraPedido}\n\n*Nome:* ${nomeCliente}\n*Endereço:* ${enderecoCliente}\n\n*Itens:*\n${itensCarrinhoTexto}\n\n*Total Geral: R$* ${totalGeralTexto}\n\n*Forma de Pagamento:* `;
 
   if (formaPagamento) {
       mensagemWhatsapp += formaPagamento.value;
-      if (formaPagamento.value === 'dinheiro') {
+      if (formaPagamento.value === 'Dinheiro') {
           if (valorDinheiroInput.value) {
               const valorDadoFormatado = parseFloat(valorDinheiroInput.value.replace(',', '.')).toFixed(2).replace('.', ',');
               mensagemWhatsapp += ` - Valor dado: R$ ${valorDadoFormatado}`;
@@ -731,12 +719,23 @@ function finalizarVenda() {
       mensagemWhatsapp += 'Não selecionada';
   }
 
+mensagemWhatsapp += '\n*OBS.:* O pedido será aprovado apóes conferência dos itens, quantidades, preços e totais.';
+
   const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
   const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
 
   window.open(linkWhatsapp, '_blank');
   $('#carrinhoModal').modal('hide');
 }
+
+/*const numeroWhatsapp = '75998886000';
+    const mensagemTesteNegrito = "*Teste de negrito via código*";
+    const linkTeste = `https://wa.me/<span class="math-inline">\{numeroWhatsapp\}?text\=</span>{encodeURIComponent(mensagemTesteNegrito)}`;
+    window.open(linkTeste, '_blank');
+}*/
+//ver se funciona IA MANDOU
+
+
 
 // Chave PIX estática (você pode gerar dinamicamente ou buscar do seu backend)
 document.addEventListener('DOMContentLoaded', () => {
@@ -795,7 +794,5 @@ function calcularTrocoAutomatico() {
           mensagemTrocoDiv.style.display = 'none';
           mensagemTrocoDiv.innerText = '';
       }
-  } else {
-      console.error('Elemento valorTroco não encontrado!');
-  }
+  } 
 }
