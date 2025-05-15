@@ -326,7 +326,8 @@ function limparCarrinho() {
 updateCartCount();
   // Limpar os campos de nome e endereço
   /*document.getElementById('nomeCliente').value = '';
-  document.getElementById('enderecoCliente').value = '';*/
+  document.getElementById('enderecoCliente').value = '';
+  document.getElementById('comentarioCliente').value = '';*/
 
   // Limpar o campo de valor pago
   const valorDinheiroInput = document.getElementById('valorDinheiro');
@@ -434,7 +435,8 @@ function updateCartModal() {
 
         // Limpar os campos de nome e endereço quando o carrinho estiver vazio
         /*document.getElementById('nomeCliente').value = '';
-        document.getElementById('enderecoCliente').value = '';*/
+        document.getElementById('enderecoCliente').value = '';
+        document.getElementById('comentarioCliente').value = '';*/
 
         // Limpar o campo de valor pago quando o carrinho estiver vazio
         const valorDinheiroInput = document.getElementById('valorDinheiro');
@@ -660,6 +662,8 @@ function finalizarVenda() {
   const itensCarrinhoDivs = listaItensCarrinhoElem.querySelectorAll('.d-flex.align-items-center.border-bottom.mb-3.pb-2');
   const totalCarrinhoElement = document.getElementById('totalCarrinho');
   const valorTrocoSpan = document.getElementById('valorTroco');
+  const comentarioCliente = document.getElementById('comentarioCliente').value.trim();
+
 
   if (cartItems.length === 0) {
       showToast('aviso', 'O carrinho está vazio. Adicione itens antes de finalizar.');
@@ -714,20 +718,21 @@ const codigoPedido = gerarCodigoAleatorio(10);
       if (formaPagamento.value === 'Dinheiro') {
           if (valorDinheiroInput.value) {
               const valorDadoFormatado = parseFloat(valorDinheiroInput.value.replace(',', '.')).toFixed(2).replace('.', ',');
-              mensagemWhatsapp += ` - Valor dado: R$ ${valorDadoFormatado}`;
+              mensagemWhatsapp += ` *- Valor dado: R$* ${valorDadoFormatado}`;
               if (valorTrocoSpan && valorTrocoSpan.innerText !== '0,00') {
-                  mensagemWhatsapp += ` - Troco: R$ ${valorTrocoSpan.innerText}`;
+                  mensagemWhatsapp += ` *- Troco: R$* ${valorTrocoSpan.innerText}`;
               }
           }
       } else if (formaPagamento.value === 'pix') {
           const chavePixElement = document.getElementById('chavePix');
-          mensagemWhatsapp += ` - Chave PIX: ${chavePixElement.innerText}`;
+          mensagemWhatsapp += ` *- Chave PIX:* ${chavePixElement.innerText}`;
       }
   } else {
       mensagemWhatsapp += 'Não selecionada';
   }
-
-mensagemWhatsapp += '\n\n*OBS.:* O pedido será aprovado após conferência dos itens, quantidades, preços e totais.';
+    
+    mensagemWhatsapp += '\n\n*Mensagem do cliente:* ${comentarioCliente.innerText}';
+    mensagemWhatsapp += '\n\n\n*OBS.:* O pedido será aprovado após conferência dos itens, quantidades, preços e totais.';
 
   const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
   const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
