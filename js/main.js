@@ -727,7 +727,7 @@ const codigoPedido = gerarCodigoAleatorio(10);
       mensagemWhatsapp += 'Não selecionada';
   }
 
-mensagemWhatsapp += '\n*OBS.:* O pedido será aprovado apóes conferência dos itens, quantidades, preços e totais.';
+mensagemWhatsapp += '\n\n*OBS.:* O pedido será aprovado após conferência dos itens, quantidades, preços e totais.';
 
   const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
   const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
