@@ -323,7 +323,7 @@ function limparCarrinho() {
   cartItems = []; // Zera o array de itens do carrinho
   saveCart(); // Salva o carrinho
   updateCartModal(); // Atualiza a listagem do carrinho
-
+updateCartCount();
   // Limpar os campos de nome e endereço
   /*document.getElementById('nomeCliente').value = '';
   document.getElementById('enderecoCliente').value = '';*/
@@ -496,9 +496,17 @@ function clearCart() {
 }
 
 // LGPD
-function setupLgpd() {
+// Se quiser que só apareça dependendo da aceitação
+/*function setupLgpd() { 
   if (!getCookie('lgpdConsent')) {
     document.getElementById('lgpdBanner').style.display = 'block';
+  }
+}*/
+// ou sempre apareça dependendi da aceitsção
+function setupLgpd() {
+  const lgpdBannerElement = document.getElementById('lgpdBanner');
+  if (lgpdBannerElement) {
+    lgpdBannerElement.style.display = 'block';
   }
 }
 
