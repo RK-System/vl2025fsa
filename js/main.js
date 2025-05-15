@@ -662,7 +662,7 @@ function finalizarVenda() {
   const itensCarrinhoDivs = listaItensCarrinhoElem.querySelectorAll('.d-flex.align-items-center.border-bottom.mb-3.pb-2');
   const totalCarrinhoElement = document.getElementById('totalCarrinho');
   const valorTrocoSpan = document.getElementById('valorTroco');
-  const comentarioCliente = document.getElementById('comentarioCliente').value.trim();
+  const comentarioClienteInput = document.getElementById('comentarioCliente'); // Captura o textarea
 
 
   if (cartItems.length === 0) {
@@ -710,18 +710,20 @@ function finalizarVenda() {
 
 const codigoPedido = gerarCodigoAleatorio(10);
 
-  const totalGeralTexto = totalCarrinhoElement.innerText;
-  let mensagemWhatsapp = `*Pedido:* ${codigoPedido}\n${dataHoraPedido}\n\n*Nome:* ${nomeCliente}\n*Endereço:* ${enderecoCliente}\n\n*Itens:*\n${itensCarrinhoTexto}\n\n*Total Geral: R$* ${totalGeralTexto}\n\n*Forma de Pagamento:* `;
+const totalGeralTexto = parseFloat(totalCarrinhoElement.innerText.replace(' ', '').replace('R$', '').replace(',', '.'));
+  const totalGeralFormatado = totalGeralTexto.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let mensagemWhatsapp = `*Pedido:* ${codigoPedido}\n${dataHoraPedido}\n\n*Nome:* ${nomeCliente}\n*Endereço:* ${enderecoCliente}\n\n*Itens:*\n${itensCarrinhoTexto}\n\n*Total Geral: R$* ${totalGeralFormatado}\n\n*Forma de Pagamento:* `;
 
-  if (formaPagamento) {
-      mensagemWhatsapp += formaPagamento.value;
-      if (formaPagamento.value === 'Dinheiro') {
-          if (valorDinheiroInput.value) {
-              const valorDadoFormatado = parseFloat(valorDinheiroInput.value.replace(',', '.')).toFixed(2).replace('.', ',');
-              mensagemWhatsapp += ` *- Valor dado: R$* ${valorDadoFormatado}`;
-              if (valorTrocoSpan && valorTrocoSpan.innerText !== '0,00') {
-                  mensagemWhatsapp += ` *- Troco: R$* ${valorTrocoSpan.innerText}`;
-              }
+  if (formaPagamento) {
+    mensagemWhatsapp += formaPagamento.value;
+    if (formaPagamento.value === 'Dinheiro') {
+      if (valorDinheiroInput.value) {
+        const valorDadoTexto = parseFloat(valorDinheiroInput.value.replace(',', '.'));
+        const valorDadoFormatado = valorDadoTexto.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        mensagemWhatsapp += ` - Valor dado: R$ ${valorDadoFormatado}`;
+        if (valorTrocoSpan && valorTrocoSpan.innerText !== '0,00') {
+          mensagemWhatsapp += ` - Troco: R$ ${valorTrocoSpan.innerText}`;
+        }
           }
       } else if (formaPagamento.value === 'pix') {
           const chavePixElement = document.getElementById('chavePix');
@@ -730,8 +732,10 @@ const codigoPedido = gerarCodigoAleatorio(10);
   } else {
       mensagemWhatsapp += 'Não selecionada';
   }
+      if (comentarioClienteInput.value.trim()) {
+    mensagemWhatsapp += `\n\n*Mensagem do Cliente:* ${comentarioClienteInput.value.trim()}`;
+  }
     
-    mensagemWhatsapp += '\n\n*Mensagem do cliente:* ${comentarioCliente}';
     mensagemWhatsapp += '\n\n\n*OBS.:* O pedido será aprovado após conferência dos itens, quantidades, preços e totais.';
 
   const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
