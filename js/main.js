@@ -25,6 +25,16 @@ let products = [
 let currentCategory = "todos";  // Categoria inicial
 let cartItems = [];
 let searchResults = [];
+let voltouDoWhatsapp = false;
+
+// Verificar se o usuário voltou do WhatsApp
+window.addEventListener('focus', function() {
+  if (sessionStorage.getItem('saiuParaWhatsapp') === 'true') {
+    voltouDoWhatsapp = true;
+    sessionStorage.removeItem('saiuParaWhatsapp');
+    exibirAlertaCarrinho("Você tem um pedido não finalizado. Deseja manter os itens no carrinho?", true);
+  }
+});
 
 // Navegação
 function setupNavigation() {
@@ -663,7 +673,10 @@ function finalizarVenda() {
   const totalCarrinhoElement = document.getElementById('totalCarrinho');
   const valorTrocoSpan = document.getElementById('valorTroco');
   const comentarioClienteInput = document.getElementById('comentarioCliente'); // Captura o textarea
-
+    
+    sessionStorage.setItem('saiuParaWhatsapp', 'true');
+  saveCart(); // Já deve existir
+  localStorage.setItem('pedidoWhatsAppIniciado', 'true');
 
   if (cartItems.length === 0) {
       showToast('aviso', 'O carrinho está vazio. Adicione itens antes de finalizar.');
