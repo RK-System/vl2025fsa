@@ -731,7 +731,7 @@ const codigoPedido = gerarCodigoAleatorio(10);
       mensagemWhatsapp += 'Não selecionada';
   }
     
-    mensagemWhatsapp += '\n\n*Mensagem do cliente:* ${comentarioCliente.innerText}';
+    mensagemWhatsapp += '\n\n*Mensagem do cliente:* ${comentarioCliente}';
     mensagemWhatsapp += '\n\n\n*OBS.:* O pedido será aprovado após conferência dos itens, quantidades, preços e totais.';
 
   const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
