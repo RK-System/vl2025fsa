@@ -111,10 +111,13 @@
                         <input type="text" class="form-control form-control-sm" id="enderecoCliente" placeholder="Digite seu endereço">
                         <button class="btn btn-outline-secondary btn-sm" type="button" onclick="document.getElementById('enderecoCliente').value = '';"><i class="bi bi-x-lg text-danger"></i></button>
                     </div>
-                    <label for="comentarioCliente" class="form-label">Observação:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" id="comentarioCliente" placeholder="Digite sua observação">
+                    <div>
+                        <br>
+                    <label for="comentarioCliente" class="form-label">Sua Mensagem:</label>
+                    <textarea class="form-control" id="comentarioCliente" rows="3" maxlength="250" placeholder="Digite aqui..." style="font-size: 14px;"></textarea>
+                    <small class="text-muted">Máximo de 250 caracteres.</small>
                         <button class="btn btn-outline-secondary btn-sm" type="button" onclick="document.getElementById('comentarioCliente').value = '';"><i class="bi bi-x-lg text-danger"></i></button>
+
                     </div>
                 </div>
 
