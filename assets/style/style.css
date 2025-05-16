@@ -3,10 +3,45 @@ body {
     text-size-adjust: 100%;
 }
 
+.logo img {
+    width: 90px; /* Ajuste o tamanho conforme necessário */
+    height: 90px; /* Ajuste o tamanho conforme necessário (deve ser igual à largura para ser redondo) */
+    /*-height: 80px; /* Define uma altura máxima para o logo */
+    /*width: auto; /* Mantém a proporção da imagem */
+    vertical-align: middle; /* Alinha verticalmente com o texto do menu, se houver */
+    border-radius: 50%; /* Cria o formato redondo */
+    overflow: hidden; /* Garante que a imagem fique dentro do círculo */
+    object-fit: cover; /* Garante que a imagem cubra o círculo sem distorcer */
+}
+
+/* Outros estilos para o link .logo, se necessário */
+.logo {
+    display: inline-block; /* Para controlar largura e altura */
+    margin-right: 20px; /* Adiciona um espaço à direita do logo */
+}
+
 .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.alerta-carrinho {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com alguma transparência */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1050; /* Garante que fique acima de outros elementos, como modais */
+  display: none; /* Inicialmente escondido */
+}
+
+.botoes-alerta button {
+  margin: 0 10px;
 }
 
 /* Responsividade para a navbar */
@@ -49,6 +84,10 @@ main {
 }
 
 .card:hover {
+    width: 300px;
+    height: 150px;
+    margin: 5px auto;
+    transition: 500ms linear; 
     transform: scale(1.1);
 }
 
