@@ -627,14 +627,14 @@ const detalhesPixDiv = document.getElementById('detalhesPix');
                 const chavePix = chavePixElement.querySelector('span').textContent.trim();
                 navigator.clipboard.writeText(chavePix)
                     .then(() => {
+                        showToast('sucesso', 'Chave Pix copiada!');
                         copiarPixBotao.classList.add('copiado');
                         setTimeout(() => {
                             copiarPixBotao.classList.remove('copiado');
                         }, 1000);
                     })
-                    .catch(err => {
-                        console.error('Erro ao copiar a chave PIX: ', err);
-                        alert('Erro ao copiar a chave PIX.');
+                    .catch(err => {                       
+                       showToast('erro', 'ERRO ao copiar Chave Pix copiada!');
                     });
             });
         }
@@ -737,25 +737,26 @@ const totalGeralTexto = parseFloat(totalCarrinhoElement.innerText.replace(' ', '
         if (valorTrocoSpan && valorTrocoSpan.innerText !== '0,00') {
           mensagemWhatsapp += ` - Troco: R$ ${valorTrocoSpan.innerText}`;
         }
-          }
-      } else if (formaPagamento.value === 'pix') {
-          const chavePixElement = document.getElementById('chavePix');
-          mensagemWhatsapp += ` *- Chave PIX:* ${chavePixElement.innerText}`;
-      }
-  } else {
-      mensagemWhatsapp += 'Não selecionada';
-  }
-      if (comentarioClienteInput.value.trim()) {
+      }
+    } else if (formaPagamento.value === 'pix') {
+      const chavePixElement = document.getElementById('chavePix');
+      mensagemWhatsapp += ` *- Chave PIX:* ${chavePixElement.innerText}`;
+    }
+  } else {
+    mensagemWhatsapp += 'Não selecionada';
+  }
+  
+  if (comentarioClienteInput.value.trim()) {
     mensagemWhatsapp += `\n\n*Mensagem do Cliente:* ${comentarioClienteInput.value.trim()}`;
   }
-    
-    mensagemWhatsapp += '\n\n\n*OBS.:* O pedido será aprovado após conferência dos itens, quantidades, preços e totais.';
+  
+  mensagemWhatsapp += '\n\n\n*OBS.:* O pedido será aprovado após conferência dos itens, quantidades, preços e totais.';
 
-  const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
-  const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
+  const numeroWhatsapp = '75998886000'; // Substitua pelo seu número
+  const linkWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
 
-  window.open(linkWhatsapp, '_blank');
-  $('#carrinhoModal').modal('hide');
+  window.open(linkWhatsapp, '_blank');
+  $('#carrinhoModal').modal('hide');
 }
 
 /*const numeroWhatsapp = '75998886000';
