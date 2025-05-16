@@ -91,6 +91,16 @@ main {
     transform: scale(1.1);
 }
 
+@media (min-width: 300px) and (max-width: 570px) {
+    .card:hover {
+        width: 150px;
+        height: 75px;
+        margin: 5px auto;
+        transition: 500ms linear; 
+        transform: scale(1.1);
+    }
+}
+
 .btnPriv {
     display: flex;
     justify-content: center;
